@@ -36,7 +36,7 @@ void single_code_refresh_callback(void *data) {
 static void update_graphics(Layer *layer, GContext *ctx) {
 	draw_countdown_graphic(&layer, &ctx, countdown_layer_onscreen);                               
 	if (!single_code_exiting)
-		single_code_graphics_timer = app_timer_register(countdown_refresh_time, (AppTimerCallback) single_code_refresh_callback, NULL);
+	    single_code_graphics_timer = app_timer_register(countdown_refresh_time, (AppTimerCallback) single_code_refresh_callback, NULL);
 }
 
 
@@ -47,7 +47,7 @@ void apply_display_colors();
 
 void refresh_screen_data(int direction) {
 	if (!loading_complete)
-		return;
+	    return;
 
 	animation_direction = direction;
 	animation_state = 40;
@@ -64,9 +64,9 @@ void on_animation_stopped_callback(Animation *anim, bool finished, void *context
 
 void animate_label_on() {
 	if (watch_otp_count)
-		strcpy(label_text, otp_labels[otp_selected]);
+	    strcpy(label_text, otp_labels[otp_selected]);
 	else
-		strcpy(label_text, "EMPTY");
+	    strcpy(label_text, "EMPTY");
 
 	GRect start = text_label_rect;
 	switch(animation_direction)
@@ -216,24 +216,24 @@ void animation_control(void) {
 void single_code_window_second_tick(int seconds) {
 
 	if (seconds % 30 == 0)
-		otp_update_tick++;
+	    otp_update_tick++;
 
-	if	(otp_updated_at_tick != otp_update_tick) {
-		animation_state = 20;
-		animation_control();
+	if(otp_updated_at_tick != otp_update_tick) {
+	    animation_state = 20;
+	    animation_control();
 	}
 
 	if (refresh_required) {
-		refresh_required = false;
+	    refresh_required = false;
 
-		if (colors_changed) {
-			colors_changed = false;
-			animation_state = 50;
-			animation_control();
-		}
-		else
-			refresh_screen_data(DOWN);	
-	}
+	    if (colors_changed) {
+		colors_changed = false;
+		animation_state = 50;
+		animation_control();
+	    }
+	    else
+		refresh_screen_data(DOWN);	
+	    }
 }
 
 void up_single_click_handler(ClickRecognizerRef recognizer, void *context) {
