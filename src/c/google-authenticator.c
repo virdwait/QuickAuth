@@ -42,7 +42,7 @@ char *generateCode(const char *key, int timezone_offset) {
 	// Estimated number of bytes needed to represent the decoded secret. Because
 	// of white-space and separators, this is an upper bound of the real number,
 	// which we later get as a return-value from base32_decode()
-	int secretLen = (strlen(key) + 7)/8*BITS_PER_BASE32_CHAR;
+	int secretLen = (strlen(key) + 7) / 8 * BITS_PER_BASE32_CHAR;
 	
 	// Sanity check, that our secret will fixed into a reasonably-sized static
 	// array.
