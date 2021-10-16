@@ -1,5 +1,5 @@
 //
-// Copyright 2015
+// Copyright 2021
 // PebbAuth for the Pebble Smartwatch
 // Author: Kevin Cooper
 // https://github.com/JumpMaster/PebbleAuth
@@ -373,9 +373,9 @@ static void in_received_handler(DictionaryIterator *iter, void *context) {
       watch_otp_count--;
       persist_delete(PS_SECRET+watch_otp_count);
 
-      if (otp_selected >= key_found) {
-        if (otp_selected == key_found)
+      if (otp_selected == key_found)
           refresh_screen();
+      else if (otp_selected > key_found) {
         otp_selected--;;
       }
 
